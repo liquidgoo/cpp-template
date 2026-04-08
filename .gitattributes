@@ -1,0 +1,5 @@
+# Set default behavior to LF for all text files
+* text=auto eol=lf
+
+# Explicitly set CRLF for files that require it (e.g., Windows batch files)
+*.{cmd,bat} text eol=crlf

@@ -33,5 +33,4 @@ jobs:
         if: github.repository != env.SOURCE_REPOSITORY
         with:
           source_repo_path: ${{ env.SOURCE_REPOSITORY }}
-          upstream_branch: ${{ env.SOURCE_BRANCH }}
-          pr_labels: <label1>,<label2>[,...] # defaults to template_sync
+          upstream_branch: ${{ env.SOURCE_BRANCH }

@@ -10,6 +10,8 @@ on:
 env:
   SOURCE_BRANCH: main
   SOURCE_REPOSITORY: liquidgoo/cpp-template
+  EMAIL: vl.yakshuk@gmail.com
+  USERNAME: liquidgoo
 jobs:
   repo-sync:
     runs-on: ubuntu-latest
@@ -33,4 +35,6 @@ jobs:
         if: github.repository != env.SOURCE_REPOSITORY
         with:
           source_repo_path: ${{ env.SOURCE_REPOSITORY }}
-          upstream_branch: ${{ env.SOURCE_BRANCH }
+          upstream_branch: ${{ env.SOURCE_BRANCH }}
+          git_user_name: ${{ env.USERNAME }}
+          git_user_email: ${{ env.EMAIL }}

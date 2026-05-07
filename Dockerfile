@@ -1,4 +1,18 @@
+
 FROM ubuntu
+ARG PROJ_DIR="sample"
+ARG CONAN_PROFILES="${PROJ_DIR}/conan_profiles/"
+
+ENV PATH="${PATH}:/root/.local/bin" \
+    PROJ_DIR="${PROJ_DIR}" \
+    CONAN_PROFILES="${CONAN_PROFILES}"
+
+WORKDIR ${PROJ_DIR}
+
+RUN mkdir -p ~/.conan2/profiles && \
+    mkdir -p ${CONAN_PROFILES} && \
+    ln -sf ${CONAN_PROFILES} ~/.conan2/profiles/project_profiles
+    #chown -R vscode:vscode /workspace
 
 # Base system update & toolchain install
 RUN echo "[Docker] Stage: update & install toolchain" && \
@@ -16,15 +30,12 @@ RUN echo "[Docker] Stage: update & install toolchain" && \
     clangd && \
     rm -rf /var/lib/apt/lists/*
 
-ENV PATH="${PATH}:/root/.local/bin"
-
 # Conan initialisation
 RUN echo "[Docker] Conan profile detect" && \
     conan profile detect --force
 # Pre-commit hook installation
 RUN echo "[Docker] pre-commit install-hooks" \
     pre-commit install-hooks
-WORKDIR "/sample"
 
 # Default entrypoint
 ENTRYPOINT [ "/bin/bash" ]

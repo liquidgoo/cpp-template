@@ -1,0 +1,19 @@
+{
+    "commandContainer": {
+        "install": [
+            {
+            "name": "install-debug",
+                "description": "Conan install Debug with Ninja",
+                "detail": "Install dependencies for Debug build using clang profile and Ninja generator",
+                "conanRecipe": "conanfile.txt",
+                "installFolder": "build",
+                "profile": "clang",
+                "args": [
+                    "-s", "build_type=Debug",
+                    "-c", "tools.cmake.cmaketoolchain:generator=Ninja",
+                    "--build=missing"
+                ]
+            }
+        ]
+    }
+}
